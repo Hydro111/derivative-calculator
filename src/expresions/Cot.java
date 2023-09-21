@@ -1,9 +1,4 @@
-import expresions.Constant;
-import expresions.Expression;
-import expresions.Function;
-import expresions.Multiplication;
-import expresions.Power;
-
+package expresions;
 public class Cot extends Function {
 
 	public Cot(Expression operand) {

@@ -1,11 +1,4 @@
-import expresions.Constant;
-import expresions.Cos;
-import expresions.Expression;
-import expresions.Function;
-import expresions.Multiplication;
-import expresions.Power;
-import expresions.Sin;
-
+package expresions;
 public class Tan extends Function {
 
 	public Tan(Expression operand) {

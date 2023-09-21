@@ -94,6 +94,25 @@ public class ExpressionTools {
 			return new Cos(parseToExpresion(workingText.substring(3)));
 		}
 		
+		if (workingText.length() > 3 && workingText.substring(0, 3).equals("sec")) {
+			return new Sec(parseToExpresion(workingText.substring(3)));
+		}
+		
+		if (workingText.length() > 3 && workingText.substring(0, 3).equals("csc")) {
+			return new Csc(parseToExpresion(workingText.substring(3)));
+		}
+		
+		if (workingText.length() > 3 && workingText.substring(0, 3).equals("tan")) {
+			return new Tan(parseToExpresion(workingText.substring(3)));
+		}
+		
+		if (workingText.length() > 3 && workingText.substring(0, 3).equals("cot")) {
+			return new Cot(parseToExpresion(workingText.substring(3)));
+		}
+		
+		
+		
+		
 		if ( workingText.equals("x")) {
 			return new Variable();
 		}

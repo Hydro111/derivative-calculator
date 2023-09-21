@@ -1,10 +1,4 @@
-import expresions.Constant;
-import expresions.Cos;
-import expresions.Expression;
-import expresions.Function;
-import expresions.Multiplication;
-import expresions.Sin;
-
+package expresions;
 public class Sec extends Function {
 
 	public Sec(Expression operand) {

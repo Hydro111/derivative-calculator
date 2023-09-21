@@ -1,8 +1,4 @@
-import expresions.Constant;
-import expresions.Expression;
-import expresions.Function;
-import expresions.Multiplication;
-
+package expresions;
 public class Csc extends Function {
 
 	public Csc(Expression operand) {
