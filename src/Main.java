@@ -16,6 +16,7 @@ public class Main {
 			
 			System.out.println(testExpression.toDisplayString());
 		}
+		scanner.close();
 		
 	}
 
