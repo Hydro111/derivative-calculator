@@ -110,6 +110,10 @@ public class ExpressionTools {
 			return new Cot(parseToExpresion(workingText.substring(3)));
 		}
 		
+		if (workingText.length() > 2 && workingText.substring(0, 2).equals("ln")) {
+			return new NaturalLog(parseToExpresion(workingText.substring(2)));
+		}
+		
 		
 		
 		

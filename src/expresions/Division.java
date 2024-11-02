@@ -57,8 +57,14 @@ public class Division extends Operator {
 	
 	@Override
 	public Expression reduced() {
-		if (!operand2.hasVariable() && operand2.getValue(0) == 1) {
+		if (!operand2.reduced().hasVariable() && operand2.getValue(0) == 1) {
 			return operand1.reduced();
+		}
+		if (!operand1.reduced().hasVariable()) {
+			if (operand1.getValue(0) == 1) {
+				return new Power(operand2.reduced(), new Constant(-1));
+			}
+			return new Multiplication(operand1.reduced(), new Power(operand2.reduced(), new Constant(-1)));
 		}
 		
 		return new Division(operand1.reduced(), operand2.reduced());

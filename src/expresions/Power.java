@@ -24,7 +24,7 @@ public class Power extends Operator {
 		
 		// Haha, good luck
 		if ( hasVariable1 &&  hasVariable2) {
-			
+			return new Multiplication(this, new Multiplication(operand2, new NaturalLog(operand1)).derivative());
 		}
 		
 		// It's a constant
@@ -34,7 +34,7 @@ public class Power extends Operator {
 		
 		// We don't know how to do this... yet
 		if (!hasVariable1 &&  hasVariable2) {
-			
+			return new Multiplication(new Multiplication(this, new NaturalLog(operand1)), operand2.derivative());
 		}
 		
 		// Power rule! (plus chain rule)

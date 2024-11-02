@@ -1,36 +1,51 @@
 package expresions;
 
-public class Addition extends Operator {
+import java.util.LinkedList;
+import java.util.List;
 
-	public Addition(Expression operand1, Expression operand2) {
-		super(operand1, operand2);
+public class Addition extends OperatorCommutative {
+	
+	public Addition(Expression... expressions) {
+		super(expressions);
 	}
 
 	@Override
 	public double getValue(double varVal) {
-		return operand1.getValue(varVal) + operand2.getValue(varVal);
+		double out = 0.0;
+		for (Expression operand : operands) {
+			out += operand.getValue(varVal);
+		}
+		return out;
 	}
 
 	@Override
 	public String toDisplayString() {
-		return String.format("(%1$s + %2$s)", operand1.toDisplayString(), operand2.toDisplayString());
+		String outString = "(";
+		for (Expression operand : operands) {
+			outString = outString.concat(operand.toDisplayString().concat(" + "));
+		}
+		return outString.substring(0,outString.length()-3).concat(")");
 	}
 
 	@Override
 	public Expression derivative() {
-		return new Addition(operand1.derivative(), operand2.derivative());
+		Expression[] derivatives = new Expression[operands.length];
+		for (int i = 0; i < derivatives.length; i++) {
+			derivatives[i] = operands[i].derivative();
+		}
+		return new Addition(derivatives);
 	}
 	
 	@Override
 	public Expression reduced() {
-		if (!operand1.hasVariable() && operand1.getValue(0) == 0) {
-			return operand2.reduced();
+		List<Expression> expressions = new LinkedList<Expression>();
+		
+		for (Expression operand : operands) {
+			if (operand.hasVariable() || operand.getValue(0) != 0) {
+				expressions.add(operand.reduced());
+			}
 		}
 		
-		if (!operand2.hasVariable() && operand2.getValue(0) == 0) {
-			return operand1.reduced();
-		}
-		
-		return new Addition(operand1.reduced(), operand2.reduced());
+		return new Addition(expressions.toArray(new Expression[expressions.size()]));
 	}
 }
